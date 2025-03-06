@@ -35,6 +35,34 @@ CREATE TABLE public.clients (
 ALTER TABLE public.clients OWNER TO postgres;
 
 --
+-- Name: coordinatoreventpackages; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.coordinatoreventpackages (
+    package_id uuid DEFAULT gen_random_uuid() NOT NULL,
+    coordinator_id uuid NOT NULL,
+    package_details text NOT NULL,
+    package_budget numeric(10,2) NOT NULL,
+    created_at timestamp without time zone DEFAULT now()
+);
+
+
+ALTER TABLE public.coordinatoreventpackages OWNER TO postgres;
+
+--
+-- Name: coordinatorpackagesuppliers; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.coordinatorpackagesuppliers (
+    package_supplier_id uuid DEFAULT gen_random_uuid() NOT NULL,
+    package_id uuid NOT NULL,
+    supplier_id uuid NOT NULL
+);
+
+
+ALTER TABLE public.coordinatorpackagesuppliers OWNER TO postgres;
+
+--
 -- Name: coordinators; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -119,6 +147,21 @@ ALTER SEQUENCE public.roles_role_id_seq OWNED BY public.roles.role_id;
 
 
 --
+-- Name: suppliereventpackages; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.suppliereventpackages (
+    supplier_package_id uuid DEFAULT gen_random_uuid() NOT NULL,
+    supplier_id uuid NOT NULL,
+    package_details text NOT NULL,
+    package_budget numeric(10,2) NOT NULL,
+    created_at timestamp without time zone DEFAULT now()
+);
+
+
+ALTER TABLE public.suppliereventpackages OWNER TO postgres;
+
+--
 -- Name: suppliers; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -187,6 +230,22 @@ ALTER TABLE ONLY public.clients
 
 
 --
+-- Name: coordinatoreventpackages coordinatoreventpackages_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.coordinatoreventpackages
+    ADD CONSTRAINT coordinatoreventpackages_pkey PRIMARY KEY (package_id);
+
+
+--
+-- Name: coordinatorpackagesuppliers coordinatorpackagesuppliers_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.coordinatorpackagesuppliers
+    ADD CONSTRAINT coordinatorpackagesuppliers_pkey PRIMARY KEY (package_supplier_id);
+
+
+--
 -- Name: coordinators coordinators_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -232,6 +291,14 @@ ALTER TABLE ONLY public.roles
 
 ALTER TABLE ONLY public.roles
     ADD CONSTRAINT roles_role_name_key UNIQUE (role_name);
+
+
+--
+-- Name: suppliereventpackages suppliereventpackages_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.suppliereventpackages
+    ADD CONSTRAINT suppliereventpackages_pkey PRIMARY KEY (supplier_package_id);
 
 
 --
@@ -283,6 +350,30 @@ ALTER TABLE ONLY public.clients
 
 
 --
+-- Name: coordinatoreventpackages coordinatoreventpackages_coordinator_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.coordinatoreventpackages
+    ADD CONSTRAINT coordinatoreventpackages_coordinator_id_fkey FOREIGN KEY (coordinator_id) REFERENCES public.coordinators(coordinator_id) ON DELETE CASCADE;
+
+
+--
+-- Name: coordinatorpackagesuppliers coordinatorpackagesuppliers_package_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.coordinatorpackagesuppliers
+    ADD CONSTRAINT coordinatorpackagesuppliers_package_id_fkey FOREIGN KEY (package_id) REFERENCES public.coordinatoreventpackages(package_id) ON DELETE CASCADE;
+
+
+--
+-- Name: coordinatorpackagesuppliers coordinatorpackagesuppliers_supplier_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.coordinatorpackagesuppliers
+    ADD CONSTRAINT coordinatorpackagesuppliers_supplier_id_fkey FOREIGN KEY (supplier_id) REFERENCES public.suppliers(supplier_id) ON DELETE CASCADE;
+
+
+--
 -- Name: coordinators coordinators_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -320,6 +411,14 @@ ALTER TABLE ONLY public.eventsuppliers
 
 ALTER TABLE ONLY public.eventsuppliers
     ADD CONSTRAINT eventsuppliers_supplier_id_fkey FOREIGN KEY (supplier_id) REFERENCES public.suppliers(supplier_id) ON DELETE CASCADE;
+
+
+--
+-- Name: suppliereventpackages suppliereventpackages_supplier_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.suppliereventpackages
+    ADD CONSTRAINT suppliereventpackages_supplier_id_fkey FOREIGN KEY (supplier_id) REFERENCES public.suppliers(supplier_id) ON DELETE CASCADE;
 
 
 --

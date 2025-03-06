@@ -37,6 +37,100 @@
       "comment": null,
       "indices": {}
     },
+    "coordinatoreventpackages": {
+      "name": "coordinatoreventpackages",
+      "columns": {
+        "package_id": {
+          "name": "package_id",
+          "type": "uuid",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": true,
+          "comment": null
+        },
+        "coordinator_id": {
+          "name": "coordinator_id",
+          "type": "uuid",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": true,
+          "comment": null
+        },
+        "package_details": {
+          "name": "package_details",
+          "type": "text",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": true,
+          "comment": null
+        },
+        "package_budget": {
+          "name": "package_budget",
+          "type": "numeric",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": true,
+          "comment": null
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "comment": null
+        }
+      },
+      "comment": null,
+      "indices": {}
+    },
+    "coordinatorpackagesuppliers": {
+      "name": "coordinatorpackagesuppliers",
+      "columns": {
+        "package_supplier_id": {
+          "name": "package_supplier_id",
+          "type": "uuid",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": true,
+          "comment": null
+        },
+        "package_id": {
+          "name": "package_id",
+          "type": "uuid",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": true,
+          "comment": null
+        },
+        "supplier_id": {
+          "name": "supplier_id",
+          "type": "uuid",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": true,
+          "comment": null
+        }
+      },
+      "comment": null,
+      "indices": {}
+    },
     "coordinators": {
       "name": "coordinators",
       "columns": {
@@ -255,6 +349,63 @@
       "comment": null,
       "indices": {}
     },
+    "suppliereventpackages": {
+      "name": "suppliereventpackages",
+      "columns": {
+        "supplier_package_id": {
+          "name": "supplier_package_id",
+          "type": "uuid",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": true,
+          "comment": null
+        },
+        "supplier_id": {
+          "name": "supplier_id",
+          "type": "uuid",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": true,
+          "comment": null
+        },
+        "package_details": {
+          "name": "package_details",
+          "type": "text",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": true,
+          "comment": null
+        },
+        "package_budget": {
+          "name": "package_budget",
+          "type": "numeric",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": true,
+          "comment": null
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "comment": null
+        }
+      },
+      "comment": null,
+      "indices": {}
+    },
     "suppliers": {
       "name": "suppliers",
       "columns": {
@@ -438,6 +589,36 @@
       "updateConstraint": "NO_ACTION",
       "deleteConstraint": "CASCADE"
     },
+    "coordinatoreventpackages_coordinator_id_fkey": {
+      "name": "coordinatoreventpackages_coordinator_id_fkey",
+      "primaryTableName": "coordinators",
+      "primaryColumnName": "coordinator_id",
+      "foreignTableName": "coordinatoreventpackages",
+      "foreignColumnName": "coordinator_id",
+      "cardinality": "ONE_TO_MANY",
+      "updateConstraint": "NO_ACTION",
+      "deleteConstraint": "CASCADE"
+    },
+    "coordinatorpackagesuppliers_package_id_fkey": {
+      "name": "coordinatorpackagesuppliers_package_id_fkey",
+      "primaryTableName": "coordinatoreventpackages",
+      "primaryColumnName": "package_id",
+      "foreignTableName": "coordinatorpackagesuppliers",
+      "foreignColumnName": "package_id",
+      "cardinality": "ONE_TO_MANY",
+      "updateConstraint": "NO_ACTION",
+      "deleteConstraint": "CASCADE"
+    },
+    "coordinatorpackagesuppliers_supplier_id_fkey": {
+      "name": "coordinatorpackagesuppliers_supplier_id_fkey",
+      "primaryTableName": "suppliers",
+      "primaryColumnName": "supplier_id",
+      "foreignTableName": "coordinatorpackagesuppliers",
+      "foreignColumnName": "supplier_id",
+      "cardinality": "ONE_TO_MANY",
+      "updateConstraint": "NO_ACTION",
+      "deleteConstraint": "CASCADE"
+    },
     "coordinators_user_id_fkey": {
       "name": "coordinators_user_id_fkey",
       "primaryTableName": "users",
@@ -483,6 +664,16 @@
       "primaryTableName": "suppliers",
       "primaryColumnName": "supplier_id",
       "foreignTableName": "eventsuppliers",
+      "foreignColumnName": "supplier_id",
+      "cardinality": "ONE_TO_MANY",
+      "updateConstraint": "NO_ACTION",
+      "deleteConstraint": "CASCADE"
+    },
+    "suppliereventpackages_supplier_id_fkey": {
+      "name": "suppliereventpackages_supplier_id_fkey",
+      "primaryTableName": "suppliers",
+      "primaryColumnName": "supplier_id",
+      "foreignTableName": "suppliereventpackages",
       "foreignColumnName": "supplier_id",
       "cardinality": "ONE_TO_MANY",
       "updateConstraint": "NO_ACTION",
