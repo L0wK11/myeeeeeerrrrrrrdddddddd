@@ -1,0 +1,522 @@
+{
+  "tables": {
+    "clients": {
+      "name": "clients",
+      "columns": {
+        "client_id": {
+          "name": "client_id",
+          "type": "uuid",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": true,
+          "comment": null
+        },
+        "user_id": {
+          "name": "user_id",
+          "type": "uuid",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": true,
+          "comment": null
+        },
+        "other_client_attributes": {
+          "name": "other_client_attributes",
+          "type": "jsonb",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "comment": null
+        }
+      },
+      "comment": null,
+      "indices": {}
+    },
+    "coordinators": {
+      "name": "coordinators",
+      "columns": {
+        "coordinator_id": {
+          "name": "coordinator_id",
+          "type": "uuid",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": true,
+          "comment": null
+        },
+        "user_id": {
+          "name": "user_id",
+          "type": "uuid",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": true,
+          "comment": null
+        },
+        "experience": {
+          "name": "experience",
+          "type": "text",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "comment": null
+        },
+        "specialization": {
+          "name": "specialization",
+          "type": "varchar",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "comment": null
+        },
+        "other_coordinator_attributes": {
+          "name": "other_coordinator_attributes",
+          "type": "jsonb",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "comment": null
+        }
+      },
+      "comment": null,
+      "indices": {}
+    },
+    "events": {
+      "name": "events",
+      "columns": {
+        "event_id": {
+          "name": "event_id",
+          "type": "uuid",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": true,
+          "comment": null
+        },
+        "client_id": {
+          "name": "client_id",
+          "type": "uuid",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": true,
+          "comment": null
+        },
+        "coordinator_id": {
+          "name": "coordinator_id",
+          "type": "uuid",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "comment": null
+        },
+        "event_details": {
+          "name": "event_details",
+          "type": "text",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": true,
+          "comment": null
+        },
+        "budget": {
+          "name": "budget",
+          "type": "numeric",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": true,
+          "comment": null
+        },
+        "status": {
+          "name": "status",
+          "type": "varchar",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": true,
+          "comment": null
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "comment": null
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "comment": null
+        }
+      },
+      "comment": null,
+      "indices": {}
+    },
+    "eventsuppliers": {
+      "name": "eventsuppliers",
+      "columns": {
+        "event_supplier_id": {
+          "name": "event_supplier_id",
+          "type": "uuid",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": true,
+          "comment": null
+        },
+        "event_id": {
+          "name": "event_id",
+          "type": "uuid",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": true,
+          "comment": null
+        },
+        "supplier_id": {
+          "name": "supplier_id",
+          "type": "uuid",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": true,
+          "comment": null
+        },
+        "status": {
+          "name": "status",
+          "type": "varchar",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": true,
+          "comment": null
+        }
+      },
+      "comment": null,
+      "indices": {}
+    },
+    "roles": {
+      "name": "roles",
+      "columns": {
+        "role_id": {
+          "name": "role_id",
+          "type": "int4",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": true,
+          "comment": null
+        },
+        "role_name": {
+          "name": "role_name",
+          "type": "varchar",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": true,
+          "comment": null
+        }
+      },
+      "comment": null,
+      "indices": {}
+    },
+    "suppliers": {
+      "name": "suppliers",
+      "columns": {
+        "supplier_id": {
+          "name": "supplier_id",
+          "type": "uuid",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": true,
+          "comment": null
+        },
+        "user_id": {
+          "name": "user_id",
+          "type": "uuid",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": true,
+          "comment": null
+        },
+        "service_type": {
+          "name": "service_type",
+          "type": "varchar",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "comment": null
+        },
+        "rating": {
+          "name": "rating",
+          "type": "numeric",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "comment": null
+        },
+        "other_supplier_attributes": {
+          "name": "other_supplier_attributes",
+          "type": "jsonb",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "comment": null
+        }
+      },
+      "comment": null,
+      "indices": {}
+    },
+    "userroles": {
+      "name": "userroles",
+      "columns": {
+        "user_role_id": {
+          "name": "user_role_id",
+          "type": "uuid",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": true,
+          "comment": null
+        },
+        "user_id": {
+          "name": "user_id",
+          "type": "uuid",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": true,
+          "comment": null
+        },
+        "role_id": {
+          "name": "role_id",
+          "type": "int4",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": true,
+          "comment": null
+        },
+        "is_active": {
+          "name": "is_active",
+          "type": "bool",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": true,
+          "comment": null
+        }
+      },
+      "comment": null,
+      "indices": {}
+    },
+    "users": {
+      "name": "users",
+      "columns": {
+        "user_id": {
+          "name": "user_id",
+          "type": "uuid",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": true,
+          "comment": null
+        },
+        "name": {
+          "name": "name",
+          "type": "varchar",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": true,
+          "comment": null
+        },
+        "email": {
+          "name": "email",
+          "type": "varchar",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": true,
+          "comment": null
+        },
+        "password": {
+          "name": "password",
+          "type": "text",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": true,
+          "comment": null
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "comment": null
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "comment": null
+        }
+      },
+      "comment": null,
+      "indices": {}
+    }
+  },
+  "relationships": {
+    "clients_user_id_fkey": {
+      "name": "clients_user_id_fkey",
+      "primaryTableName": "users",
+      "primaryColumnName": "user_id",
+      "foreignTableName": "clients",
+      "foreignColumnName": "user_id",
+      "cardinality": "ONE_TO_MANY",
+      "updateConstraint": "NO_ACTION",
+      "deleteConstraint": "CASCADE"
+    },
+    "coordinators_user_id_fkey": {
+      "name": "coordinators_user_id_fkey",
+      "primaryTableName": "users",
+      "primaryColumnName": "user_id",
+      "foreignTableName": "coordinators",
+      "foreignColumnName": "user_id",
+      "cardinality": "ONE_TO_MANY",
+      "updateConstraint": "NO_ACTION",
+      "deleteConstraint": "CASCADE"
+    },
+    "events_client_id_fkey": {
+      "name": "events_client_id_fkey",
+      "primaryTableName": "clients",
+      "primaryColumnName": "client_id",
+      "foreignTableName": "events",
+      "foreignColumnName": "client_id",
+      "cardinality": "ONE_TO_MANY",
+      "updateConstraint": "NO_ACTION",
+      "deleteConstraint": "CASCADE"
+    },
+    "events_coordinator_id_fkey": {
+      "name": "events_coordinator_id_fkey",
+      "primaryTableName": "coordinators",
+      "primaryColumnName": "coordinator_id",
+      "foreignTableName": "events",
+      "foreignColumnName": "coordinator_id",
+      "cardinality": "ONE_TO_MANY",
+      "updateConstraint": "NO_ACTION",
+      "deleteConstraint": "SET_NULL"
+    },
+    "eventsuppliers_event_id_fkey": {
+      "name": "eventsuppliers_event_id_fkey",
+      "primaryTableName": "events",
+      "primaryColumnName": "event_id",
+      "foreignTableName": "eventsuppliers",
+      "foreignColumnName": "event_id",
+      "cardinality": "ONE_TO_MANY",
+      "updateConstraint": "NO_ACTION",
+      "deleteConstraint": "CASCADE"
+    },
+    "eventsuppliers_supplier_id_fkey": {
+      "name": "eventsuppliers_supplier_id_fkey",
+      "primaryTableName": "suppliers",
+      "primaryColumnName": "supplier_id",
+      "foreignTableName": "eventsuppliers",
+      "foreignColumnName": "supplier_id",
+      "cardinality": "ONE_TO_MANY",
+      "updateConstraint": "NO_ACTION",
+      "deleteConstraint": "CASCADE"
+    },
+    "suppliers_user_id_fkey": {
+      "name": "suppliers_user_id_fkey",
+      "primaryTableName": "users",
+      "primaryColumnName": "user_id",
+      "foreignTableName": "suppliers",
+      "foreignColumnName": "user_id",
+      "cardinality": "ONE_TO_MANY",
+      "updateConstraint": "NO_ACTION",
+      "deleteConstraint": "CASCADE"
+    },
+    "userroles_role_id_fkey": {
+      "name": "userroles_role_id_fkey",
+      "primaryTableName": "roles",
+      "primaryColumnName": "role_id",
+      "foreignTableName": "userroles",
+      "foreignColumnName": "role_id",
+      "cardinality": "ONE_TO_MANY",
+      "updateConstraint": "NO_ACTION",
+      "deleteConstraint": "CASCADE"
+    },
+    "userroles_user_id_fkey": {
+      "name": "userroles_user_id_fkey",
+      "primaryTableName": "users",
+      "primaryColumnName": "user_id",
+      "foreignTableName": "userroles",
+      "foreignColumnName": "user_id",
+      "cardinality": "ONE_TO_MANY",
+      "updateConstraint": "NO_ACTION",
+      "deleteConstraint": "CASCADE"
+    }
+  }
+}
